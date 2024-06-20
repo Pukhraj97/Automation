@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>
+            Passing anomynous function as argument
+        </title>
+        <body>
+            <script>
+                function disp(myfun)
+                {
+                    return myfun()
+                }
+                document.write(disp(function(){
+
+                    return "GeekyShows"
+                }))
+        
+                
+            </script>
+        </body>
+    </head>
+</html>

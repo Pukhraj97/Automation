@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>
+           Object Literal
+        </title>
+    </head>
+    <body>
+<script>
+var fees={}
+fees['Rahul']=100;
+fees['Sumit']=200;
+fees['Rohan']=300;
+fees['Total']=function(){return(100+200+300)}
+document.write(fees['Total']()+ "<BR>")
+document.write(fees['Rahul']+ "<BR>");
+
+var color={}
+color.red=100;
+color.blue=200;
+color.green=300;
+document.write(color.blue+ "<BR>")
+
+var Brand={Puma:100, Adidas:200, Nike:300, total:function(){return(100+200+300)}}
+document.write(Brand.total()+ "<BR>")
+document.write(Brand['Puma'])
+</script>    
+    </body>
+</html>
