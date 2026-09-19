@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: Release Radar API
+  version: 1.0.0
+  description: Read-only release quality signals used by the dashboard.
+paths:
+  /api/releases:
+    get:
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [ready, attention]
+      responses:
+        '200':
+          description: Release quality signals
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseList'
+  /api/releases/{releaseId}:
+    get:
+      parameters:
+        - name: releaseId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Release details }
+        '404': { description: Release not found }
+components:
+  schemas:
+    ReleaseList:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: array
+          items: { $ref: '#/components/schemas/Release' }
+        meta:
+          type: object
+          required: [total]
+          properties:
+            total: { type: integer, minimum: 0 }
+    Release:
+      type: object
+      required: [id, name, owner, status, updated, checks]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        owner: { type: string }
+        status: { type: string, enum: [ready, attention] }
+        updated: { type: string }
+        checks:
+          type: object
+          required: [ui, api, data, events, errorRate]
+          properties:
+            ui: { type: integer, minimum: 0 }
+            api: { type: integer, minimum: 0 }
+            data: { type: integer, minimum: 0 }
+            events: { type: number, minimum: 0, maximum: 100 }
+            errorRate: { type: number, minimum: 0 }

@@ -1,0 +1,18 @@
+{
+  "name": "release-radar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Playwright quality-engineering portfolio project for release confidence checks.",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "validate:data": "node scripts/validate-fixtures.js",
+    "quality": "npm test",
+    "start": "node app/server.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "yaml": "^2.8.1"
+  }
+}
